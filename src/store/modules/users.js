@@ -1,7 +1,8 @@
-const stare = function () {
+const state = function () {
   return {
     userList: [
       {
+        id: 1,
         name: "Nguyễn Thế Hiệu",
         age: 23,
         email: "hieuu@gmail.com",
@@ -10,6 +11,7 @@ const stare = function () {
         typePets: ["Chó", "Mèo"],
       },
       {
+        id: 2,
         name: "Nguyễn Thị Hải Yến",
         age: 23,
         email: "haiyenn@gmail.com",
@@ -18,10 +20,23 @@ const stare = function () {
         typePets: ["Chuột", "Cá"],
       },
     ],
+    userDetail: null,
   };
 };
-
+const mutations = {
+  setUserDetailMutation(state, paload) {
+    const userDetail = state.userList.find((user) => user.id == paload);
+    state.userDetail = userDetail;
+  },
+};
+const actions = {
+  getUserByIdAction(context, paload) {
+    context.commit("setUserDetailMutation", paload);
+  },
+};
 export default {
   namespaced: true,
-  stare,
+  state,
+  actions,
+  mutations,
 };
